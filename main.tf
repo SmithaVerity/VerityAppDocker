@@ -9,16 +9,12 @@ variable "awsprops" {
     publicip = true
     keyname = "Verity77ppkSydney"
     secgroupname = "VerityAppSecGrp"
-    my-access-key = ""
-    my-secret-key = ""
-    GITHUB_TOKEN = ""
   }
 }
+variable "GITHUB_TOKEN" { type= string } 
 
 provider "aws" {
   region = lookup(var.awsprops, "region")
-  access_key = lookup(var.awsprops, "my-access-key")
-  secret_key = lookup(var.awsprops, "my-secret-key")
 }
 
 resource "aws_security_group" "verityappsg" {
@@ -68,8 +64,8 @@ resource "aws_instance" "verityapp" {
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
-  user_data_base64 = base64encode("${templatefile("${path.module}/init-script.sh", {
-    GITHUB_TOKEN   = lookup(var.awsprops, "GITHUB_TOKEN")
+  user_data_base64 = base64encode("${templatefile("init-script.sh", {
+    "GITHUB_TOKEN" = "${var.GITHUB_TOKEN}"
   })}")
 
 
