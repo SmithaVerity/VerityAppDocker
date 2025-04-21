@@ -1,13 +1,11 @@
 #!/bin/bash
 
 set -e
-sudo mkdir test
+
+sudo -s
+apt-get update
+apt-get install -y apache2
+systemctl enable apache2
+
 git clone https://github.com/SmithaVerity/ABTestingApp.git
 
-export GITHUB_TOKEN=${GITHUB_TOKEN}
-git clone https://SmithaVerity:${GITHUB_TOKEN}@github.com/SmithaVerity/verityapp.git    
-
-cd verityapp/
-sh deployApp.sh
-sudo docker-compose up --build
-sudo docker start verity
