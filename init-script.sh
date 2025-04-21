@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+sudo mkdir test
+
 export GITHUB_TOKEN=${GITHUB_TOKEN}
 git clone https://SmithaVerity:${GITHUB_TOKEN}@github.com/SmithaVerity/verityapp.git    
 
