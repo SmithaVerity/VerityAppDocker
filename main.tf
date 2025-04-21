@@ -21,10 +21,6 @@ provider "aws" {
   secret_key = lookup(var.awsprops, "my-secret-key")
 }
 
-provider "github" {
-  token = lookup(var.awsprops, "GITHUB_TOKEN")
-  owner = "SmithaVerity"
-}
 resource "aws_security_group" "verityappsg" {
   name = lookup(var.awsprops, "secgroupname")
   description = lookup(var.awsprops, "secgroupname")
