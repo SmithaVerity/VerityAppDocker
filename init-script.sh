@@ -2,6 +2,7 @@
 
 set -e
 sudo mkdir test
+git clone https://github.com/SmithaVerity/ABTestingApp.git
 
 export GITHUB_TOKEN=${GITHUB_TOKEN}
 git clone https://SmithaVerity:${GITHUB_TOKEN}@github.com/SmithaVerity/verityapp.git    
