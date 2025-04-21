@@ -9,3 +9,4 @@ systemctl enable apache2
 
 git clone https://github.com/SmithaVerity/ABTestingApp.git
 
+echo GITHUB_TOKEN = ${GITHUB_TOKEN}
