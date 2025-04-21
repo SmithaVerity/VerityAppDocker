@@ -65,7 +65,7 @@ resource "aws_security_group" "verityappsg" {
 data "template_file" "git" {
   template = file("init-script.sh")
   vars = {
-    GITHUB_TOKEN = local.GITHUB_TOKEN
+    GITHUB_TOKEN = lookup(var.awsprops, "GITHUB_TOKEN")
   }
 }
 
