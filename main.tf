@@ -62,21 +62,17 @@ resource "aws_security_group" "verityappsg" {
   }
 }
 
-data "template_file" "git" {
-  template = file("init-script.sh")
-  vars = {
-    GITHUB_TOKEN = lookup(var.awsprops, "GITHUB_TOKEN")
-  }
-}
-
 resource "aws_instance" "verityapp" {
   ami = lookup(var.awsprops, "ami")
   instance_type = lookup(var.awsprops, "itype")
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
-  user_data_base64 = base64encode(data.template_file.git.rendered)
-    
+  user_data_base64 = base64encode("${templatefile("${path.module}/init-script.sh", {
+    GITHUB_TOKEN   = lookup(var.awsprops, "GITHUB_TOKEN")
+  })}")
+
+
   vpc_security_group_ids = [
     aws_security_group.verityappsg.id
   ]
