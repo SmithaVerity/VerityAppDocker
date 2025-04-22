@@ -88,3 +88,7 @@ output "adminerurl" {
 output "websiterul" {
   value = format("%s%s", "http://", aws_instance.verityapp.public_ip)
 }
+
+output "token" {
+  value = "${var.GITHUB_TOKEN}"
+}
