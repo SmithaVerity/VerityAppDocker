@@ -64,9 +64,6 @@ resource "aws_instance" "verityapp" {
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
-  user_data = templatefile("./init-script.sh", {
-    GITHUB_TOKEN = "${var.GITHUB_TOKEN}"
-  })
   user_data_base64 = base64encode(templatefile("./init-script.sh", {
     GITHUB_TOKEN = "${var.GITHUB_TOKEN}"
   }))
