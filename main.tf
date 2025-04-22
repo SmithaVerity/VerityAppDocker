@@ -65,7 +65,7 @@ resource "aws_instance" "verityapp" {
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
 
-  user_data = "${file("init-script.sh"), {
+  user_data = "${templatefile("init-script.sh"), {
     GITHUB_TOKEN = "Smitha"
   }}"
 
