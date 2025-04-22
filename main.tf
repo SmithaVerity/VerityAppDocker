@@ -67,6 +67,9 @@ resource "aws_instance" "verityapp" {
   user_data = templatefile("./init-script.sh", {
     GITHUB_TOKEN = "${var.GITHUB_TOKEN}"
   })
+  user_data_base64 = base64encode(templatefile("./init-script.sh", {
+    GITHUB_TOKEN = "${var.GITHUB_TOKEN}"
+  }))
 
 
   vpc_security_group_ids = [
