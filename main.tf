@@ -65,10 +65,9 @@ resource "aws_instance" "verityapp" {
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
 
-  user_data = <<-EOT
-    #!/bin/bash
-    echo "Hello Terraform!" > test.txt
-  EOT
+  user_data = "${file("init-script.sh"), {
+    GITHUB_TOKEN = "${GITHUB_TOKEN}"
+  }}"
 
   vpc_security_group_ids = [
     aws_security_group.verityappsg.id
