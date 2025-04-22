@@ -1,4 +1,6 @@
 #!/bin/bash
+echo ${GITHUB_TOKEN} > /tmp/test.txt
+
 
 set -e
 
