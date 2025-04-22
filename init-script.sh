@@ -1,5 +1,5 @@
 #!/bin/bash
-echo ${GITHUB_TOKEN} > /test.txt
+echo ${test} > /test.txt
 
 set -e
 
@@ -10,5 +10,5 @@ systemctl enable apache2
 
 git clone https://github.com/SmithaVerity/ABTestingApp.git
 
-echo GITHUB_TOKEN = ${GITHUB_TOKEN}
+echo GITHUB_TOKEN = ${test}
 mv ABTestingApp/cafe /var/www/html
