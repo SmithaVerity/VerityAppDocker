@@ -13,12 +13,6 @@ variable "awsprops" {
 }
 variable "GITHUB_TOKEN" { type= string } 
 
-locals {
-  user_data = <<-EOT
-    #!/bin/bash
-    echo "Hello Terraform!" > test.txt
-  EOT
-}
 provider "aws" {
   region = lookup(var.awsprops, "region")
 }
@@ -71,7 +65,10 @@ resource "aws_instance" "verityapp" {
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
 
-  user_data_base64            = base64encode(local.user_data)
+  user_data = <<-EOT
+    #!/bin/bash
+    echo "Hello Terraform!" > test.txt
+  EOT
 
   vpc_security_group_ids = [
     aws_security_group.verityappsg.id
