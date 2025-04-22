@@ -66,7 +66,7 @@ resource "aws_instance" "verityapp" {
   key_name = lookup(var.awsprops, "keyname")
 
   user_data = "${file("init-script.sh"), {
-    GITHUB_TOKEN = "${GITHUB_TOKEN}"
+    GITHUB_TOKEN = "Smitha"
   }}"
 
   vpc_security_group_ids = [
