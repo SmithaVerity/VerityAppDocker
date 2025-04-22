@@ -16,7 +16,7 @@ variable "GITHUB_TOKEN" { type= string }
 locals {
   user_data = <<-EOT
     #!/bin/bash
-    echo "Hello Terraform!" > /tmp/test.txt
+    echo "Hello Terraform!" > test.txt
   EOT
 }
 provider "aws" {
